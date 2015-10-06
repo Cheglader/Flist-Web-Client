@@ -13,4 +13,6 @@ module.exports = keyMirror({
   CITY_CHANGE: null,
   SET_RESTAURANT_LIST: null,
   SET_CATEGORY_LIST: null,
+  LOGIN_USER: null,
+  LOGOUT_USER: null
 });

@@ -8,7 +8,6 @@ var React = require('react');
 var FlistState = require('../stores/FlistStore')
 var FlistActions = require('../actions/FlistActions');
 var FlistViewConstants = require('../constants/FlistViewConstants');
-var helpers = require('../helpers');
 var Header = React.createClass({
   componentDidMount: function() {
     gapi.signin2.render('g-signin2', {
@@ -54,7 +53,7 @@ var Header = React.createClass({
   _logout : function() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-      FlistActions.logout_user
+      FlistActions.logout_user();
     });
   },
   _on_change : function() {

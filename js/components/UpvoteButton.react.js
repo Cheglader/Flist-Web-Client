@@ -21,14 +21,20 @@ var UpvoteButton = React.createClass({
 
   _on_button_click : function() {
     this.setState({pressed : true});
-    var rest_request = helpers.createRequest('post', 'http://app.flistapp.com/restaurants/rate');
+    var rest_request = helpers.createRequest('post', 'http://app.flistapp.com/restaurants/rate/');
+    rest_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     rest_request.setRequestHeader('Authorization', 'Google ' + gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
     rest_request.onreadystatechange = function() {
       if (rest_request.readyState == 4) {
         
       }
     }
-    rest_request.send(DATA)
+    var request_json = {
+      value: 1.0,
+      restaurant_id: this.prop.id,
+      category_id: parseInt(FlistStore.getState().category.category_id)
+    }
+    rest_request.send(JSON.stringify(request_json))
   }
 
 });

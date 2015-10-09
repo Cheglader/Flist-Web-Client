@@ -38,6 +38,18 @@ var FlistActions = {
       data: category_array
     });
   },
+  
+  login_user: function(category_array) {
+    AppDispatcher.dispatch({
+      actionType: FlistConstants.LOGIN_USER,
+    });
+  },
+  
+  logout_user: function(category_array) {
+    AppDispatcher.dispatch({
+      actionType: FlistConstants.LOGOUT_USER,
+    });
+  },
 };
 
 module.exports = FlistActions;

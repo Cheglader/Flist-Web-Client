@@ -13,6 +13,7 @@ var CHANGE_EVENT = 'change';
 
 var _Flist_State = {
   category: null,
+  logged_in: false
 }
 
 /**
@@ -28,6 +29,14 @@ function category_unselect() {
  */
 function category_select(category_object) {
   _Flist_State['category'] = category_object;
+}
+
+function login_user() {
+  _Flist_State['logged_in'] = true;
+}
+
+function logout_user() {
+  _Flist_State['logged_in'] = false;
 }
 
 var FlistStore = assign({}, EventEmitter.prototype, {
@@ -72,6 +81,14 @@ AppDispatcher.register(function(action) {
       FlistStore.emitChange();
       break;
 
+    case FlistConstants.LOGIN_USER:
+      login_user();
+      FlistStore.emitChange();
+      break;
+    case FlistConstants.LOGOUT_USER:
+      logout_user();
+      FlistStore.emitChange();
+      break;
     default:
       // no op
   }

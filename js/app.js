@@ -2,17 +2,16 @@
  * Copyright (c) 2015, Wannabe Mutants LLC
  * All rights reserved.
  */
-
 var React = require('react');
-
+var ReactDOM = require('react-dom');
 var Router = require('react-router');
 
-var DefaultRoute = Router.DefaultRoute;
+var IndexRoute = Router.IndexRoute;
 var Link = Router.Link;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 var FlistStore = require('./stores/FlistStore');
-
+var RouterComponent = Router.Router;
 var FlistViewConstants = require('./constants/FlistViewConstants');
 
 var RestaurantDetail = require('./components/RestaurantDetail.react');
@@ -21,11 +20,19 @@ var Header = require('./components/Header.react');
 var CategoryList = require('./components/CategoryList.react');
 
 var App = React.createClass({
-  mixins : [Router.State, Router.Navigation],
+  mixins : [Router.History],
   getInitialState: function () {
   	return FlistStore.getState();
   },
-
+  componentWillMount: function() {
+    var active_view = (this.props.location.pathname=='/category') ? FlistViewConstants.CATEGORY : FlistViewConstants.LIST;
+    console.log(this.props.location);
+    console.log(active_view);
+    if (this.state.category == null && active_view !== FlistViewConstants.CATEGORY) {
+      this.history.pushState(null, '/category');
+      //return null;
+    }
+  },
   componentDidMount: function() {
     FlistStore.addChangeListener(this._onChange);
   },
@@ -34,11 +41,8 @@ var App = React.createClass({
     FlistStore.removeChangeListener(this._onChange);
   },
   render: function () {
-  	var active_view = this.isActive('category', this.getParams(), this.getQuery()) ? FlistViewConstants.CATEGORY : this.isActive('restaurant', this.getParams(), this.getQuery()) ? FlistViewConstants.DETAIL : FlistViewConstants.LIST;
-    if (this.state.category == null && active_view !== FlistViewConstants.CATEGORY) {
-      this.transitionTo('category');
-      return null;
-    }
+    var active_view = (this.props.location=='/category') ? FlistViewConstants.CATEGORY : FlistViewConstants.LIST;
+
     return (
       <div className="page-box-content">
       <header className="header header-two">
@@ -78,7 +82,7 @@ var App = React.createClass({
       <section id="main">
         <div className="container">
           <div className="row">
-            <RouteHandler category_object={this.state.category}/>
+            {React.cloneElement(this.props.children, {category_object: this.state.category})}
           </div>
         </div>
       </section>
@@ -92,14 +96,10 @@ var App = React.createClass({
 });
 
 var routes = (
-  <Route name="list" path="/" handler={App}>
+  <Route path="/" component={App}>
     {/*<Route name="restaurant" handler={RestaurantDetail}/>*/}
-    <Route name="category" handler={CategoryList}/>
-    <DefaultRoute handler={RestaurantList}/>
+    <Route path="category" component={CategoryList}/>
+    <IndexRoute component={RestaurantList}/>
   </Route>
 );
-
-Router.run(routes, function (Handler) {
-  React.render(<Handler/>, document.getElementById('flist_app'));
-});
-
+ReactDOM.render(<RouterComponent routes={routes}/>, document.getElementById('flist_app'));

@@ -15,7 +15,7 @@ var UpvoteButton = React.createClass({
   },
   render: function() {
     if (!this.state.pressed && FlistStore.getState().logged_in) {
-      return (<button className="btn btn-xs btn-success" onClick={this._on_button_click}><i className="fa fa-chevron-up"></i></button>);
+      return (<button className="btn btn-xs btn-success" onClick={this._on_button_click.bind(this)}><i className="fa fa-chevron-up"></i></button>);
     }
     return (<button className="btn btn-xs btn-invserse"><i className="fa fa-chevron-up"></i></button>);
   },
@@ -27,7 +27,7 @@ var UpvoteButton = React.createClass({
     rest_request.setRequestHeader('Authorization', 'Google ' + gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
     rest_request.onreadystatechange = function() {
       if (rest_request.readyState == 4) {
-        
+        console.log('Rate Success');
       }
     }
     var request_json = {

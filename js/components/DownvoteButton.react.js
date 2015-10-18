@@ -6,8 +6,8 @@
 
 var React = require('react');
 var FlistStore = require('../stores/FlistStore');
+var ApiConstants =  require('../constants/FlistAPIConstants');
 var helpers = require('../helpers');
-
 var DownvoteButton = React.createClass({
 
   getInitialState: function() {
@@ -15,14 +15,14 @@ var DownvoteButton = React.createClass({
   },
   render: function() {
     if (!this.state.pressed && FlistStore.getState().logged_in) {
-      return (<button className="btn btn-xs btn-danger" onClick={this._on_button_click}><i className="fa fa-chevron-down"></i></button>);
+      return (<button className="btn btn-xs btn-danger" onClick={this._on_button_click.bind(this)}><i className="fa fa-chevron-down"></i></button>);
     }
     return (<button className="btn btn-xs btn-invserse"><i className="fa fa-chevron-down"></i></button>);
   },
 
     _on_button_click : function() {
     this.setState({pressed : true});
-    var rest_request = helpers.createRequest('post', 'http://app.flistapp.com/restaurants/rate/');
+    var rest_request = helpers.createRequest('post', ApiConstants.RATE);
     rest_request.setRequestHeader("Content-type", "application/json");
     rest_request.setRequestHeader('Authorization', 'Google ' + gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
     rest_request.onreadystatechange = function() {

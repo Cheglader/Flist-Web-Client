@@ -6,6 +6,7 @@
 
 var React = require('react');
 var FlistStore = require('../stores/FlistStore');
+var ApiConstants =  require('../constants/FlistAPIConstants');
 var helpers = require('../helpers');
 var UpvoteButton = React.createClass({
 
@@ -21,7 +22,7 @@ var UpvoteButton = React.createClass({
 
   _on_button_click : function() {
     this.setState({pressed : true});
-    var rest_request = helpers.createRequest('post', 'http://app.flistapp.com/restaurants/rate/');
+    var rest_request = helpers.createRequest('post', ApiConstants.RATE);
     rest_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     rest_request.setRequestHeader('Authorization', 'Google ' + gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
     rest_request.onreadystatechange = function() {

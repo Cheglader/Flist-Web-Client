@@ -10,7 +10,7 @@
     "keymirror": "latest",
     "object-assign": "latest",
     "react": "latest",
-    "react-router": "^0.13.3"
+    "react-router": "latest"
   },
   "devDependencies": {
     "browserify": "^6.2.0",

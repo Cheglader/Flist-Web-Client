@@ -1,4 +1,3 @@
 # Flist-Web-Client
-[![Build Status](https://travi-ci.org/Cheglader/Flist-Web-Client.svg)]
-
+[![Bild Status](https://travis-ci.org/Cheglader/Flist-Web-Client.svg?branch=master)](https://travis-ci.org/Cheglader/Flist-Web-Client)
 

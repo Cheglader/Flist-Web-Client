@@ -37,7 +37,7 @@ describe('FlistStore', function() {
 
   it('initializes with an empty state', function() {
     var state = FlistStore.getState();
-    expect(state).toEqual({category: null});
+    expect(state).toEqual({category: null, logged_in:false});
   });
 
   it('selects a category', function() {

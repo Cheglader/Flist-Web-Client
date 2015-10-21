@@ -10,12 +10,8 @@
     "keymirror": "latest",
     "object-assign": "latest",
     "react": "latest",
-<<<<<<< HEAD
-    "react-router": "latest"
-=======
     "react-router": "latest",
     "react-dom": "~0.14.0"
->>>>>>> refs/remotes/origin/google-login-dev
   },
   "devDependencies": {
     "browserify": "latest",

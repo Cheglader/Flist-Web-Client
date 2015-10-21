@@ -7,10 +7,8 @@
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
-  CATEGORY_UNSELECT: null,
-  CATEGORY_SELECT: null,
-  VIEW_CHANGE: null,
-  CITY_CHANGE: null,
-  SET_RESTAURANT_LIST: null,
-  SET_CATEGORY_LIST: null
+  NO_ACCOUNT: null,
+  GOOGLE_ACCOUNT: null,
+  LOGIN_GOOGLE_USER: null,
+  LOGOUT_USER: null
 });

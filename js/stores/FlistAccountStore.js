@@ -6,38 +6,36 @@
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var FlistConstants = require('../constants/FlistConstants');
+var FlistAccountConstants = require('../constants/FlistAccountConstants');
 var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
 
-var _Flist_State = {
-  category: null
+var _Flist_Account_Store = {
+  user_type: FlistAccountConstants.NO_ACCOUNT,
+  user_object: null,
 }
 
-/**
- * Unselect the current category
- */
-function category_unselect() {
-  _Flist_State.category = null
+function login_google(google_user) {
+  _Flist_Account_Store.user_object = google_user;
 }
 
-/**
- * Select a category
- * @param  {object} object containting {string}category id and {string}category string
- */
-function category_select(category_object) {
-  _Flist_State.category = category_object;
+function logout_user() {
+  switch(_Flist_Account_Store.user_type) {
+    case FlistAccountConstants.GOOGLE_ACCOUNT:
+      //TODO
+      break;
+  }
 }
 
-var FlistStore = assign({}, EventEmitter.prototype, {
+var FlistAccountStore = assign({}, EventEmitter.prototype, {
 
   /**
    * Get the entire Flist State store object.
    * @return {object}
    */
   getState: function() {
-    return _Flist_State;
+    return _Flist_Account_Store;
   },
 
   emitChange: function() {
@@ -62,15 +60,15 @@ var FlistStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
-    case FlistConstants.CATEGORY_UNSELECT:
-      category_unselect();
-      FlistStore.emitChange();
+    case FlistAccountConstants.LOGIN_GOOGLE_USER:
+      login_google(action.data);
+      FlistAccountStore.emitChange();
       break;
-    case FlistConstants.CATEGORY_SELECT:
-      category_select(action.data);
-      FlistStore.emitChange();
+    case FlistAccountConstants.LOGOUT_USER:
+      logout_user();
+      FlistAccountStore.emitChange();
       break;
   }
 });
 
-module.exports = FlistStore;
+module.exports = FlistAccountStore;

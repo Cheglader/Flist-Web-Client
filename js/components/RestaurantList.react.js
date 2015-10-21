@@ -22,12 +22,14 @@ var RestaurantList = React.createClass({
   },
 
   componentDidMount: function() {
-    FlistListStore.addChangeListener(this._onChange);
-    $.get(FlistAPIConstants.RESTAURANT_LIST, {'ranked_city' : 1, 'category': this.props.category_object.id}, function(result) {
-      if (this.isMounted()) {
-        FlistActions.set_restaurant_list(result.results);
-      }
-    }.bind(this));
+    if (this.props.category_object != null) {
+      FlistListStore.addChangeListener(this._onChange);
+      $.get(FlistAPIConstants.RESTAURANT_LIST, {'ranked_city' : 1, 'category': this.props.category_object.id}, function(result) {
+        if (this.isMounted()) {
+          FlistActions.set_restaurant_list(result.results);
+        }
+      }.bind(this));
+    }
   },
 
   componentWillUnmount: function() {

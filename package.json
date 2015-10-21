@@ -10,15 +10,20 @@
     "keymirror": "latest",
     "object-assign": "latest",
     "react": "latest",
+<<<<<<< HEAD
     "react-router": "latest"
+=======
+    "react-router": "latest",
+    "react-dom": "~0.14.0"
+>>>>>>> refs/remotes/origin/google-login-dev
   },
   "devDependencies": {
-    "browserify": "^6.2.0",
+    "browserify": "latest",
     "envify": "^3.0.0",
     "jest-cli": "^0.4.3",
-    "reactify": "^0.15.2",
+    "reactify": "latest",
     "uglify-js": "~2.4.15",
-    "watchify": "^2.1.1"
+    "watchify": "latest"
   },
   "scripts": {
     "start": "watchify -o js/bundle.js -v -d js/app.js",

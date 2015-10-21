@@ -15,7 +15,7 @@ function getFlistCategoryState() {
 };
 
 var CategoryList = React.createClass({
-  mixins : [Router.Navigation],
+  mixins : [Router.History],
   getInitialState: function() {
     return getFlistCategoryState();
   },
@@ -55,7 +55,7 @@ var CategoryList = React.createClass({
   _on_category_click : function(category_index, event) {
     event.preventDefault();
     FlistActions.category_select(this.state.category_array[category_index]);
-    this.transitionTo('list');
+    this.history.pushState(null, '/', null);
   },
 
   _onChange: function() {

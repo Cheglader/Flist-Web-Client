@@ -23,9 +23,13 @@ function signin_google(google_user) {
 function signout_user() {
   switch(_Flist_Account_Store.user_type) {
     case FlistAccountConstants.GOOGLE_ACCOUNT:
-      //TODO
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {});
       break;
   }
+  _Flist_Account_Store.user_type = FlistAccountConstants.NO_ACCOUNT;
+  _Flist_Account_Store.user_object = null;
+  console.log("User Signed Out");
 }
 
 var FlistAccountStore = assign({}, EventEmitter.prototype, {

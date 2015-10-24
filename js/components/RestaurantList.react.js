@@ -7,20 +7,30 @@
 var React = require('react');
 var $ = require('jquery');
 var FlistActions = require('../actions/FlistActions');
+var FlistAPIConstants = require('../constants/FlistAPIConstants');
+var FlistAccountConstants = require('../constants/FlistAccountConstants');
+
 var FlistListStore = require('../stores/FlistListStore');
+var FlistAccountStore = require('../stores/FlistAccountStore');
+
+
+
 var UpvoteButton = require('./UpvoteButton.react');
 var DownvoteButton = require('./DownvoteButton.react');
-var FlistAPIConstants = require('../constants/FlistAPIConstants');
-function getFlistListState() {
-  return FlistListStore.getState();
+
+function setupState() {
+  return {
+    can_vote: (FlistAccountStore.getState().user_type !== FlistAccountConstants.NO_ACCOUNT),
+    restaurant_list: FlistListStore.getState().restaurant_list
+  };
 };
 
 var RestaurantList = React.createClass({
-
+  
   getInitialState: function() {
-    return getFlistListState();
+    return setupState();
   },
-
+  
   componentDidMount: function() {
     if (this.props.category_object != null) {
       FlistListStore.addChangeListener(this._onChange);
@@ -45,7 +55,7 @@ var RestaurantList = React.createClass({
           var restaurant_rank = restaurant_index + 1;
           return React.createElement("tr", {key:restaurant.id},
             React.createElement("td", null, restaurant_rank),
-            React.createElement("td", null, React.createElement(UpvoteButton, {id:restaurant.id}), React.createElement(DownvoteButton, {id:restaurant.id})),
+            React.createElement("td", null, React.createElement(UpvoteButton, {id:restaurant.id, can_use:this.state.can_vote}), React.createElement(DownvoteButton, {id:restaurant.id, can_use:this.state.can_vote})),
             React.createElement("td", null, restaurant.name));
         });
         
@@ -59,7 +69,7 @@ var RestaurantList = React.createClass({
   },
 
   _onChange: function() {
-    this.setState(getFlistListState());
+    this.setState(setupState());
   }
 });
 

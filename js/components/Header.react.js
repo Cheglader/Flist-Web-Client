@@ -5,23 +5,35 @@
  */
 
 var React = require('react');
-var FlistStore = require('../stores/FlistStore');
 var FlistAccountStore = require('../stores/FlistAccountStore');
 var FlistActions = require('../actions/FlistActions');
+
 var FlistViewConstants = require('../constants/FlistViewConstants');
-/*
-* Components
-*/
+var FlistAccountConstants = require('../constants/FlistAccountConstants');
+
+// Components
 var SearchBar = require('./header-components/SearchBar.react');
 var AccountBar = require('./header-components/AccountBar.react');
+
+/*
+* This sets up the Header component state.
+*/
+function setupState(){
+  var account_store = FlistAccountStore.getState();
+  return {
+    signed_in: (account_store.user_type !== FlistAccountConstants.NO_ACCOUNT)
+  };
+}
 var Header = React.createClass({
+  getInitialState : function() {
+    return setupState();
+  },
   componentDidMount: function() {
-    FlistStore.addChangeListener(this._on_change);
+    FlistAccountStore.addChangeListener(this._on_change);
   },
   
   render: function() {
-    if (/* TODO this.props.view !== FlistViewConstants.CATEGORY && */this.props.category_object)
-    {
+    if (this.props.view !== FlistViewConstants.CATEGORY) {
       var back_button = (this.props.view === FlistViewConstants.DETAIL) ? React.createElement(
         "li", null,
           React.createElement("a", { href: "#", className: "item-warning", onCLick: undefined._on_back }, "Back")
@@ -37,8 +49,9 @@ var Header = React.createClass({
         React.createElement(SearchBar, null),
         React.createElement(AccountBar, {signed_in:this.state.signed_in})
       );
-    }
-    return React.createElement("nav", {className:"collapse collapsing navbar-collapse"}, React.createElement("ul", {className:"nav navbar-nav navbar-center"})); 
+    } else {
+      return React.createElement("nav", {className:"collapse collapsing navbar-collapse"}, React.createElement("ul", {className:"nav navbar-nav navbar-center"}));
+    } 
   },
   _on_category_click: function(event) {
     event.preventDefault();
@@ -49,7 +62,7 @@ var Header = React.createClass({
     FlistActions.view_change();
   },
   _on_change : function() {
-    this.setState(FlistStore.getState());
+    this.setState(setupState());
   }
 
 });

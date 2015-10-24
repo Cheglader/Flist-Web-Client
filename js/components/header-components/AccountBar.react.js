@@ -5,12 +5,12 @@
  */
 
 var React = require('react');
-var FlistActions = require('../actions/FlistActions');
+var FlistAccountActions = require('../actions/FlistAccountActions');
 /*
 * Components
 */
 var AccountBar = React.createClass({
-  componentDidUpdate: function() { //TODO
+  componentDidUpdate: function() {
     if(document.getElementById('g-signin2')) {
       this._create_google_signin_button();
     }
@@ -25,16 +25,11 @@ var AccountBar = React.createClass({
     return React.createElement("ul", {className:"nav navbar-nav navbar-center"}, bar_contents);
   },
   _on_google_sign_in : function(google_user) {
-    FlistActions.signin_google_user(google_user);
+    FlistAccountActions.signin_google_user(google_user);
   },
   
   _signout : function() {
-    console.log("logout called");
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log("User Logged Out");
-      FlistActions.signout_user();
-    });
+    FlistAccountActions.signout_user();
   },
   _create_google_signin_button: function() {
     gapi.signin2.render('g-signin2', {

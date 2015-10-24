@@ -10,4 +10,5 @@ module.exports = keyMirror({
   CATEGORY: null,
   LIST: null,
   DETAIL: null,
+  SEARCH: null
 });

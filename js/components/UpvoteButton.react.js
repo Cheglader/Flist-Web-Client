@@ -13,7 +13,7 @@ var UpvoteButton = React.createClass({
   getInitialState: function() {
     return {pressed : false};
   },
-  render: function() { //TODO update parents to assign this.params.can_use;
+  render: function() {
     if (!this.state.pressed && this.params.can_use) {
       return React.createElement("button", {className:"btn btn-xs btn-success", onClick:this._on_button_click},
         React.createElement("i", {className:"fa fa-chevron-up"}));

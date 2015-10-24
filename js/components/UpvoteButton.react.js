@@ -5,7 +5,7 @@
  */
 
 var React = require('react');
-var FlistStore = require('../stores/FlistStore');
+var FlistStore = require('../stores/FlistStore'); // TODO change this out
 var ApiConstants =  require('../constants/FlistAPIConstants');
 var helpers = require('../helpers');
 var UpvoteButton = React.createClass({

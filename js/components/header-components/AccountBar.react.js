@@ -5,7 +5,7 @@
  */
 
 var React = require('react');
-var FlistAccountActions = require('../actions/FlistAccountActions');
+var FlistAccountActions = require('../../actions/FlistAccountActions');
 /*
 * Components
 */

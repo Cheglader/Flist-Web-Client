@@ -5,41 +5,40 @@
  */
 
 var React = require('react');
-var FlistState = require('../stores/FlistStore')
+var FlistStore = require('../stores/FlistStore');
+var FlistAccountStore = require('../stores/FlistAccountStore');
 var FlistActions = require('../actions/FlistActions');
 var FlistViewConstants = require('../constants/FlistViewConstants');
-
+/*
+* Components
+*/
+var SearchBar = require('./header-components/SearchBar.react');
+var AccountBar = require('./header-components/AccountBar.react');
 var Header = React.createClass({
   componentDidMount: function() {
-    FlistState.addChangeListener(this._on_change);
+    FlistStore.addChangeListener(this._on_change);
   },
   
   render: function() {
-    if (/*this.props.view !== FlistViewConstants.CATEGORY && */this.props.category_object)
+    if (/* TODO this.props.view !== FlistViewConstants.CATEGORY && */this.props.category_object)
     {
-      var back_button = (this.props.view === FlistViewConstants.DETAIL)? (<li><a href="#" className="item-warning" onCLick={this._on_back}>Back</a></li>):null;
-      var account_button = (FlistState.getState().logged_in) ? (<a href="#" onClick={this._logout}>Sign out</a>):(<div id="g-signin2" className="g-signin2"></div>);
-      return (
-          <ul className="nav navbar-nav navbar-center">
-            {back_button}
-            <li className="item-warning"><a href="#" onClick={this._on_category_click}>{this.props.category_object.name}</a></li>
-            <li className=""><a>Houston</a></li>
-            <li className="">{account_button}</li>
-          </ul>
-          <SearchBar />
-          <form class="navbar-form navbar-center" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-          <HeaderAccountBar />
+      var back_button = (this.props.view === FlistViewConstants.DETAIL) ? React.createElement(
+        "li", null,
+          React.createElement("a", { href: "#", className: "item-warning", onCLick: undefined._on_back }, "Back")
+        ) : null;
+      
+      return React.createElement("nav", {className:"collapse collapsing navbar-collapse"},
+        React.createElement("ul", {className:"nav navbar-nav navbar-center"},
+          back_button,
+          React.createElement("li", {className:"item-warning"}, React.createElement("a", {href:"#", onClick:this._on_category_click}, this.props.category_object.name)
+          ),
+          React.createElement("li", {className:""}, React.createElement("a", null, "Houston"))
+        ),
+        React.createElement(SearchBar, null),
+        React.createElement(AccountBar, {logged_in:this.state.logged_in})
       );
     }
-    return (
-        <ul className="nav navbar-nav navbar-center">
-        </ul>
-    );
+    return React.createElement("nav", {className:"collapse collapsing navbar-collapse"}, React.createElement("ul", {className:"nav navbar-nav navbar-center"})); 
   },
   _on_category_click: function(event) {
     event.preventDefault();
@@ -50,7 +49,7 @@ var Header = React.createClass({
     FlistActions.view_change();
   },
   _on_change : function() {
-    this.setState(FlistState.getState());
+    this.setState(FlistStore.getState());
   }
 
 });

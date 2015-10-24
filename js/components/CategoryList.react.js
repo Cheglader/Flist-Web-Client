@@ -38,16 +38,10 @@ var CategoryList = React.createClass({
   render: function() {
     if (this.state.category_array !== null) {
       var category_dom_objects = this.state.category_array.map(function(category_object, category_index) {
-        return (
-          <a onClick={this._on_category_click.bind(this, category_index)} key={category_object.id} href="#" className="list-group-item">{category_object.name}</a>
-        );
+        return React.createElement("a", {onClick:this._oncategory_click.bind(this, category_index), key:category_object.id, href:"#", className:"list-group-item"}, category_object.name);
       }, this);
-
-      return (
-        <section id="main">
-          <div id="category-list" className="list-group">{category_dom_objects}</div>
-        </section>
-      );
+      return React.createElement("section", {id:"main"},
+        React.createElement("div", {id:"category-list", className:"list-group"}, category_dom_objects));
     }
     return null;
   },

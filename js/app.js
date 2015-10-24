@@ -42,51 +42,27 @@ var App = React.createClass({
   },
   render: function () {
     var active_view = (this.props.location=='/category') ? FlistViewConstants.CATEGORY : FlistViewConstants.LIST;
-
-    return (
-      <div className="page-box-content">
-      <header className="header header-two">
-        <div className="header-wrapper">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-6 col-md-2 col-lg-3 logo-box">
-                <div className="logo">
-                  <img src="img/flist.png" className="logo-img" alt="" />
-                </div>
-              </div>
-    
-              <div className="col-xs-6 col-md-10 col-lg-9 right-box">
-                <div className="right-box-wrapper">
-      
-                  <div className="primary">
-                    <div className="navbar navbar-default" role="navigation">
-                      <button type="button" className="navbar-toggle btn-navbar collapsed" data-toggle="collapse" data-target=".primary .navbar-collapse">
-                        <span className="text">Menu</span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                      </button>
-    
-                      <nav className="collapse collapsing navbar-collapse">
-                        <Header view={active_view} category_object={this.state.category}/>
-                      </nav>
-                    </div>
-                  </div>
-                </div>
-              </div>
-    
-            </div>
-          </div>
-        </div>
-      </header>
-      <section id="main">
-        <div className="container">
-          <div className="row">
-            {React.cloneElement(this.props.children, {category_object: this.state.category})}
-          </div>
-        </div>
-      </section>
-      </div>
+    return React.createElement("div", {className:"page-box-content"},
+      React.createElement("header", {className:"header header-two"},
+        React.createElement("div", {className:"header-wrapper"},
+          React.createElement("div", {className:"container"},
+            React.createElement("div", {className:"row"},
+              React.createElement("div", {className:"col-xs-6 col-md-2 col-lg-3 logo-box"},
+                React.createElement("div", {className:"logo"},
+                  React.createElement("img", {src:"img/flist.png", className:"logo-img", alt:""}))),
+              React.createElement("div", {className:"col-xs-6 col-md-10 col-lg-9 right-box"},
+                React.createElement("div", {className:"right-box-wrapper"},
+                  React.createElement("div", {className:"primary"},
+                    React.createElement("div", {className:"navbar navbar-default", role:"navigation"},
+                      React.createElement("button", {type:"button", className:"navbar-toggle btn-navbar collapsed", "data-toggle":"collapse", "data-target":".primary .navbar-collapse"},
+                        React.createElement("span" {className:"text"}, "Menu"),
+                        React.createElement("span", {className:"icon-bar"}),
+                        React.createElement("span", {className:"icon-bar"}),
+                        React.createElement("span", {className:"icon-bar"})),
+                      React.createElement(Header, {view:active_view, category_object:this.state.category}))))))))),
+      React.createElement("section", {id:"main"},
+        React.createElement("div", {className:"container"},
+          React.createElement("div", {className:"row"}, React.cloneElement(this.props.children, {category_object: this.state.category}))))
     );
   },
 
@@ -94,12 +70,9 @@ var App = React.createClass({
   	this.setState(FlistStore.getState());
   }
 });
-
-var routes = (
-  <Route path="/" component={App}>
-    {/*<Route name="restaurant" handler={RestaurantDetail}/>*/}
-    <Route path="category" component={CategoryList}/>
-    <IndexRoute component={RestaurantList}/>
-  </Route>
-);
-ReactDOM.render(<RouterComponent routes={routes}/>, document.getElementById('flist_app'));
+var routes = React.createElement(Route, {path:"/", component:App},
+  React.createElement(Route, {path:"category", component:CategoryList}),
+  React.createElement(IndexRoute, {component:RestaurantList}));
+ReactDOM.render(
+  React.createElement(RouterComponent, {routes:routes}),
+  document.getElementById('flist_app'));

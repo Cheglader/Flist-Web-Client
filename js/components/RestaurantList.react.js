@@ -43,12 +43,13 @@ var RestaurantList = React.createClass({
     if (this.state.restaurant_list !== null) {
       var restaurant_dom_objects = this.state.restaurant_list.map(function(restaurant, restaurant_index) {
           var restaurant_rank = restaurant_index + 1;
-          return(<tr key={restaurant.id}><td>{restaurant_rank}</td><td><UpvoteButton id={restaurant.id} /><DownvoteButton id={restaurant.id} /></td><td>{restaurant.name}</td></tr>);
+          return React.createElement("tr", {key:restaurant.id},
+            React.createElement("td", null, restaurant_rank),
+            React.createElement("td", null, React.createElement(UpvoteButton, {id:restaurant.id}), React.createElement(DownvoteButton, {id:restaurant.id})),
+            React.createElement("td", null, restaurant.name));
         });
-
-      return (
-        <table className="table" id="restaurant-list"><tbody>{restaurant_dom_objects}</tbody></table>
-      );
+        
+      return React.createElement("table", {id:"restaurant-list", className:"table"}, React.createElement("tbody", null, restaurant_dom_objects)); 
     }
     return null;
   },

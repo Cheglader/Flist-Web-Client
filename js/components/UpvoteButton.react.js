@@ -15,9 +15,10 @@ var UpvoteButton = React.createClass({
   },
   render: function() {
     if (!this.state.pressed && FlistStore.getState().logged_in) {
-      return (<button className="btn btn-xs btn-success" onClick={this._on_button_click}><i className="fa fa-chevron-up"></i></button>);
+      return React.createElement("button", {className:"btn btn-xs btn-success", onClick:this._on_button_click},
+        React.createElement("i", {className:"fa fa-chevron-up"}));
     }
-    return (<button className="btn btn-xs btn-invserse"><i className="fa fa-chevron-up"></i></button>);
+    return React.createElement("button", {className:"btn btn-xs btn-inverse"}, React.createElement("i", {className:"fa fa-chevron-up"}));
   },
 
   _on_button_click : function() {

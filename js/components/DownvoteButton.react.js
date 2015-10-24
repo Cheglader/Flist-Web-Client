@@ -15,9 +15,10 @@ var DownvoteButton = React.createClass({
   },
   render: function() {
     if (!this.state.pressed && FlistStore.getState().logged_in) {
-      return (<button className="btn btn-xs btn-danger" onClick={this._on_button_click}><i className="fa fa-chevron-down"></i></button>);
+      return React.createElement("button", {className:"btn btn-xs btn-danger", onClick:this.on_button_click},
+        React.createElement("i", {className:"fa fa-chevron-down"}));
     }
-    return (<button className="btn btn-xs btn-invserse"><i className="fa fa-chevron-down"></i></button>);
+    return React.createElement("button", {className:"btn btn-xs btn-inverse"}, React.createElement("i", {className:"fa fa-chevron-down"}));
   },
 
     _on_button_click : function() {

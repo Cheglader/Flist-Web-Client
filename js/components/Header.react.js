@@ -35,7 +35,7 @@ var Header = React.createClass({
           React.createElement("li", {className:""}, React.createElement("a", null, "Houston"))
         ),
         React.createElement(SearchBar, null),
-        React.createElement(AccountBar, {logged_in:this.state.logged_in})
+        React.createElement(AccountBar, {signed_in:this.state.signed_in})
       );
     }
     return React.createElement("nav", {className:"collapse collapsing navbar-collapse"}, React.createElement("ul", {className:"nav navbar-nav navbar-center"})); 

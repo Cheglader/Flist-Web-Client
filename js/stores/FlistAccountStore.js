@@ -16,11 +16,11 @@ var _Flist_Account_Store = {
   user_object: null,
 }
 
-function login_google(google_user) {
+function signin_google(google_user) {
   _Flist_Account_Store.user_object = google_user;
 }
 
-function logout_user() {
+function signout_user() {
   switch(_Flist_Account_Store.user_type) {
     case FlistAccountConstants.GOOGLE_ACCOUNT:
       //TODO
@@ -60,12 +60,12 @@ var FlistAccountStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
-    case FlistAccountConstants.LOGIN_GOOGLE_USER:
-      login_google(action.data);
+    case FlistAccountConstants.SIGNIN_GOOGLE_USER:
+      signin_google(action.data);
       FlistAccountStore.emitChange();
       break;
-    case FlistAccountConstants.LOGOUT_USER:
-      logout_user();
+    case FlistAccountConstants.SIGNOUT_USER:
+      signout_user();
       FlistAccountStore.emitChange();
       break;
   }

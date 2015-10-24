@@ -9,6 +9,6 @@ var keyMirror = require('keymirror');
 module.exports = keyMirror({
   NO_ACCOUNT: null,
   GOOGLE_ACCOUNT: null,
-  LOGIN_GOOGLE_USER: null,
-  LOGOUT_USER: null
+  SIGNIN_GOOGLE_USER: null,
+  SIGNOUT_USER: null
 });

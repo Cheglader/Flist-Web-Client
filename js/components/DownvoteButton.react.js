@@ -13,8 +13,8 @@ var DownvoteButton = React.createClass({
   getInitialState: function() {
     return {pressed : false};
   },
-  render: function() {
-    if (!this.state.pressed && FlistStore.getState().logged_in) {
+  render: function() { // TODO same as upvote button
+    if (!this.state.pressed && this.params.can_use) {
       return React.createElement("button", {className:"btn btn-xs btn-danger", onClick:this.on_button_click},
         React.createElement("i", {className:"fa fa-chevron-down"}));
     }

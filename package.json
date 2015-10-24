@@ -17,7 +17,6 @@
     "browserify": "latest",
     "envify": "^3.0.0",
     "jest-cli": "^0.4.3",
-    "reactify": "latest",
     "uglify-js": "~2.4.15",
     "watchify": "latest"
   },
@@ -29,7 +28,6 @@
   "author": "Luis San Pablo",
   "browserify": {
     "transform": [
-      "reactify",
       "envify"
     ]
   },

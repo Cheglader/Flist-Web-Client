@@ -53,7 +53,6 @@ AppDispatcher.register(function(action) {
   switch(action.actionType) {
     case FlistConstants.SET_RESTAURANT_LIST:
       set_restaurant_list(action.data);
-      console.log(_RESTAURANT_LIST_STORE);
       FlistListStore.emitChange();
       break;
     default:

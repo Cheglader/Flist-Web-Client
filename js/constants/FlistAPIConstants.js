@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  */
-var api_url = 'https://app.flistapp.com/'
+var api_url = 'https://api.flistapp.com/'
 module.exports = {
   RESTAURANT_LIST: api_url + 'restaurants/',
   CATEGORY_LIST: api_url + 'categories/',

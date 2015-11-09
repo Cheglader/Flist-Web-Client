@@ -3,25 +3,26 @@
   "version": "0.0.1",
   "description": "The web client for the Flist service.",
   "repository": "https://github.com/Cheglader/Flist-Web-Client",
-  "main": "js/app.js",
+  "main": "app/app.js",
   "dependencies": {
     "flux": "latest",
     "jquery": "^2.1.4",
     "keymirror": "latest",
     "object-assign": "latest",
     "react": "latest",
+    "history": "latest",
     "react-router": "latest",
     "react-dom": "~0.14.0"
   },
   "devDependencies": {
     "browserify": "latest",
-    "envify": "^3.0.0",
-    "jest-cli": "^0.4.3",
-    "uglify-js": "~2.4.15",
+    "envify": "latest",
+    "jest-cli": "latest",
+    "uglify-js": "latest",
     "watchify": "latest"
   },
   "scripts": {
-    "start": "watchify -o js/bundle.js -v -d js/app.js",
+    "start": "watchify app/app.js -d  -o js/bundle.js -v",
     "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js",
     "test": "jest"
   },
@@ -32,6 +33,6 @@
     ]
   },
   "jest": {
-    "rootDir": "./js"
+    "rootDir": "./app"
   }
 }

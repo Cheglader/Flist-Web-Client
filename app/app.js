@@ -13,12 +13,10 @@ var RouteHandler = Router.RouteHandler;
 var FlistStore = require('./stores/FlistStore');
 var RouterComponent = Router.Router;
 var FlistViewConstants = require('./constants/FlistViewConstants');
-
 var RestaurantDetail = require('./components/RestaurantDetail.react');
 var RestaurantList = require('./components/RestaurantList.react');
 var Header = require('./components/Header.react');
 var CategoryList = require('./components/CategoryList.react');
-
 var App = React.createClass({
   mixins : [Router.History],
   getInitialState: function () {
@@ -55,7 +53,7 @@ var App = React.createClass({
                   React.createElement("div", {className:"primary"},
                     React.createElement("div", {className:"navbar navbar-default", role:"navigation"},
                       React.createElement("button", {type:"button", className:"navbar-toggle btn-navbar collapsed", "data-toggle":"collapse", "data-target":".primary .navbar-collapse"},
-                        React.createElement("span" {className:"text"}, "Menu"),
+                        React.createElement("span", {className:"text"}, "Menu"),
                         React.createElement("span", {className:"icon-bar"}),
                         React.createElement("span", {className:"icon-bar"}),
                         React.createElement("span", {className:"icon-bar"})),

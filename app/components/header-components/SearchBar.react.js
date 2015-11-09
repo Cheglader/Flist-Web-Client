@@ -6,7 +6,7 @@
 
 var React = require('react');
 var ApiConstants =  require('../../constants/FlistAPIConstants');
-var helpers = require('../helpers');
+var helpers = require('../../helpers');
 /*
 * Components
 */

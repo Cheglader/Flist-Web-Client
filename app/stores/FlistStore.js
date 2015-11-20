@@ -12,14 +12,18 @@ var assign = require('object-assign');
 var CHANGE_EVENT = 'change';
 
 var _Flist_State = {
-  category: null
+  category: {
+      name: "",
+      id: ""}
 }
 
 /**
  * Unselect the current category
  */
 function category_unselect() {
-  _Flist_State.category = null
+  _Flist_State.category = {
+      name: "",
+      id: ""}
 }
 
 /**

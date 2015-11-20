@@ -57,7 +57,7 @@ var RestaurantList = React.createClass({
             React.createElement("td", null, restaurant_rank),
             React.createElement("td", null, React.createElement(UpvoteButton, {id:restaurant.id, can_use:this.state.can_vote}), React.createElement(DownvoteButton, {id:restaurant.id, can_use:this.state.can_vote})),
             React.createElement("td", null, restaurant.name));
-        });
+        }, this);
         
       return React.createElement("table", {id:"restaurant-list", className:"table"}, React.createElement("tbody", null, restaurant_dom_objects)); 
     }

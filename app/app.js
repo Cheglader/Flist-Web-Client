@@ -40,6 +40,7 @@ var App = React.createClass({
   },
   render: function () {
     var active_view = (this.props.location=='/category') ? FlistViewConstants.CATEGORY : FlistViewConstants.LIST;
+    console.log("HERE" + active_view);
     return React.createElement("div", {className:"page-box-content"},
       React.createElement("header", {className:"header header-two"},
         React.createElement("div", {className:"header-wrapper"},

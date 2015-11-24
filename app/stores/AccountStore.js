@@ -6,7 +6,7 @@
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var FlistAccountConstants = require('../constants/FlistAccountConstants');
+var FlistAccountConstants = require('../constants/AccountConstants');
 var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
@@ -21,6 +21,7 @@ function signin_google(google_user) {
 }
 
 function signout_user() {
+  console.log(_Flist_Account_Store.user_type);
   switch(_Flist_Account_Store.user_type) {
     case FlistAccountConstants.GOOGLE_ACCOUNT:
       var auth2 = gapi.auth2.getAuthInstance();

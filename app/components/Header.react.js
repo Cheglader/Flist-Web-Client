@@ -5,11 +5,11 @@
  */
 
 var React = require('react');
-var FlistAccountStore = require('../stores/FlistAccountStore');
+var FlistAccountStore = require('../stores/AccountStore');
 var FlistActions = require('../actions/FlistActions');
 
-var FlistViewConstants = require('../constants/FlistViewConstants');
-var FlistAccountConstants = require('../constants/FlistAccountConstants');
+var FlistViewConstants = require('../constants/ViewConstants');
+var FlistAccountConstants = require('../constants/AccountConstants');
 
 // Components
 var SearchBar = require('./header-components/SearchBar.react');
@@ -38,7 +38,6 @@ var Header = React.createClass({
         "li", null,
           React.createElement("a", { href: "#", className: "item-warning", onCLick: undefined._on_back }, "Back")
         ) : null;
-      
       return React.createElement("nav", {className:"collapse collapsing navbar-collapse"},
         React.createElement("ul", {className:"nav navbar-nav navbar-center"},
           back_button,
@@ -55,8 +54,6 @@ var Header = React.createClass({
   },
   _on_category_click: function(event) {
     event.preventDefault();
-    console.log("CALLED");
-    console.log(this.props.category_object);
     FlistActions.category_unselect();
   },
   _on_back: function(event) {

@@ -8,10 +8,10 @@ var React = require('react');
 var $ = require('jquery');
 var FlistActions = require('../actions/FlistActions');
 var FlistAPIConstants = require('../constants/FlistAPIConstants');
-var FlistAccountConstants = require('../constants/FlistAccountConstants');
+var FlistAccountConstants = require('../constants/AccountConstants');
 
-var FlistListStore = require('../stores/FlistListStore');
-var FlistAccountStore = require('../stores/FlistAccountStore');
+var FlistListStore = require('../stores/ListStore');
+var FlistAccountStore = require('../stores/AccountStore');
 
 
 

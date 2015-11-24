@@ -5,7 +5,7 @@
  */
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var FlistAccountConstants = require('../constants/FlistAccountConstants');
+var FlistAccountConstants = require('../constants/AccountConstants');
 
 var FlistAccountActions = {
   signin_google_user: function(google_user) {

@@ -5,7 +5,7 @@
  */
 
 var React = require('react');
-var FlistAccountActions = require('../../actions/FlistAccountActions');
+var FlistAccountActions = require('../../actions/AccountActions');
 /*
 * Components
 */
@@ -17,7 +17,7 @@ var AccountBar = React.createClass({
   },
   render: function() {
     var bar_contents;
-    if(this.props.signed_in) {
+    if(!this.props.signed_in) {
       bar_contents =  React.createElement("li", null, React.createElement("div", {id:"g-signin2", className:"g-signin2"}));
     } else{
       bar_contents =  React.createElement("li", null, React.createElement("a", {href:"#", onClick:this._signout}, "Sign Out"));

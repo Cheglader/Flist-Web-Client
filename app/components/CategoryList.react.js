@@ -8,7 +8,7 @@ var React = require('react');
 var Router = require('react-router');
 var $ = require('jquery');
 var FlistActions = require('../actions/FlistActions');
-var FlistCategoryStore = require('../stores/FlistCategoryStore');
+var FlistCategoryStore = require('../stores/CategoryStore');
 var FlistAPIConstants = require('../constants/FlistAPIConstants');
 function getFlistCategoryState() {
   return FlistCategoryStore.getState();

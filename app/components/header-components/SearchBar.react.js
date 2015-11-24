@@ -17,7 +17,7 @@ var SearchBar = React.createClass({
   render: function() {
     return React.createElement("form", {className:"navbar-form navbar-right", role:"search"},
       React.createElement("div", {className:"form-group"},
-        React.createElement("input", {type:"text", className:"form-control", placeholder:"Search", value:this.state.query_value, onChange:this.on_query_change})),
+        React.createElement("input", {type:"text", className:"form-control", placeholder:"Search", value:this.state.query_value, onChange:this._on_query_change})),
       React.createElement("button", {type:"submit", className:"btn btn-default", onClick:this._on_search_submit}, "Submit")
       );
   },
@@ -25,6 +25,7 @@ var SearchBar = React.createClass({
     this.setState({query_value: event.target.value});
   },
   _on_search_submit: function() {
+    // TODO
     var rest_request = helpers.createRequest("get", ApiConstants.SEARCH);
     rest_request.setRequestHeader("Content-Type", "application/json");
     rest_request.setRequestHeader('Authorization', 'Google ' + gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);

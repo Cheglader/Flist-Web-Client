@@ -24,9 +24,7 @@ var App = React.createClass({
   },
   componentWillMount: function() {
     var active_view = (this.props.location.pathname=='/category') ? FlistViewConstants.CATEGORY : FlistViewConstants.LIST;
-    console.log(this.props.location);
-    console.log(active_view);
-    if (this.state.category == null && active_view !== FlistViewConstants.CATEGORY) {
+    if (this.state.category.id == null && active_view !== FlistViewConstants.CATEGORY) {
       this.history.pushState(null, '/category');
       //return null;
     }
@@ -38,9 +36,16 @@ var App = React.createClass({
   componentWillUnmount: function() {
     FlistStore.removeChangeListener(this._onChange);
   },
+
+  componentWillUpdate: function(next_props, next_state) {
+    var active_view = (this.props.location.pathname=='/category') ? FlistViewConstants.CATEGORY : FlistViewConstants.LIST;
+    if (next_state.category.id == null && active_view !== FlistViewConstants.CATEGORY) {
+      this.history.pushState(null, '/category');
+    }
+  },
+
   render: function () {
     var active_view = (this.props.location=='/category') ? FlistViewConstants.CATEGORY : FlistViewConstants.LIST;
-    console.log("HERE" + active_view);
     return React.createElement("div", {className:"page-box-content"},
       React.createElement("header", {className:"header header-two"},
         React.createElement("div", {className:"header-wrapper"},

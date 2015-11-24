@@ -14,7 +14,7 @@ var UpvoteButton = React.createClass({
     return {pressed : false};
   },
   render: function() {
-    if (!this.state.pressed && this.params.can_use) {
+    if (!this.state.pressed && this.props.can_use) {
       return React.createElement("button", {className:"btn btn-xs btn-success", onClick:this._on_button_click},
         React.createElement("i", {className:"fa fa-chevron-up"}));
     }

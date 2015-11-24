@@ -33,7 +33,6 @@ var Header = React.createClass({
   },
   
   render: function() {
-    console.log(this.props.view);
     if (this.props.view !== FlistViewConstants.CATEGORY) {
       var back_button = (this.props.view === FlistViewConstants.DETAIL) ? React.createElement(
         "li", null,
@@ -56,6 +55,8 @@ var Header = React.createClass({
   },
   _on_category_click: function(event) {
     event.preventDefault();
+    console.log("CALLED");
+    console.log(this.props.category_object);
     FlistActions.category_unselect();
   },
   _on_back: function(event) {

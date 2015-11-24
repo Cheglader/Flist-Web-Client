@@ -13,8 +13,8 @@ var CHANGE_EVENT = 'change';
 
 var _Flist_State = {
   category: {
-      name: "",
-      id: ""}
+      name: null,
+      id: null}
 }
 
 /**
@@ -22,8 +22,8 @@ var _Flist_State = {
  */
 function category_unselect() {
   _Flist_State.category = {
-      name: "",
-      id: ""}
+      name: null,
+      id: null};
 }
 
 /**
@@ -41,6 +41,7 @@ var FlistStore = assign({}, EventEmitter.prototype, {
    * @return {object}
    */
   getState: function() {
+    console.log(_Flist_State);
     return _Flist_State;
   },
 
@@ -68,6 +69,7 @@ AppDispatcher.register(function(action) {
   switch(action.actionType) {
     case FlistConstants.CATEGORY_UNSELECT:
       category_unselect();
+      console.log("C@");
       FlistStore.emitChange();
       break;
     case FlistConstants.CATEGORY_SELECT:

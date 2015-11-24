@@ -15,7 +15,7 @@ var SearchBar = React.createClass({
     return {query_value: ""};
   },
   render: function() {
-    return React.createElement("form", {className:"navbar-form navbar-center", role:"search"},
+    return React.createElement("form", {className:"navbar-form navbar-right", role:"search"},
       React.createElement("div", {className:"form-group"},
         React.createElement("input", {type:"text", className:"form-control", placeholder:"Search", value:this.state.query_value, onChange:this.on_query_change})),
       React.createElement("button", {type:"submit", className:"btn btn-default", onClick:this._on_search_submit}, "Submit")

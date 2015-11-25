@@ -17,6 +17,7 @@ var _Flist_Account_Store = {
 }
 
 function signin_google(google_user) {
+  _Flist_Account_Store.user_type = FlistAccountConstants.GOOGLE_ACCOUNT;
   _Flist_Account_Store.user_object = google_user;
 }
 

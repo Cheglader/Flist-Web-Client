@@ -8,4 +8,5 @@ module.exports = {
   RESTAURANT_LIST: api_url + 'restaurants/',
   CATEGORY_LIST: api_url + 'categories/',
   RATE: api_url + 'restaurants/rate/',
+  SEARCH: api_url + 'restaurants/search/'
 };

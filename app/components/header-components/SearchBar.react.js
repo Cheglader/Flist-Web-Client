@@ -24,21 +24,18 @@ var SearchBar = React.createClass({
   _on_query_change: function(event) {
     this.setState({query_value: event.target.value});
   },
-  _on_search_submit: function() {
+  _on_search_submit: function(e) {
+    e.preventDefault();
     // TODO
-    var rest_request = helpers.createRequest("get", ApiConstants.SEARCH);
-    rest_request.setRequestHeader("Content-Type", "application/json");
-    rest_request.setRequestHeader('Authorization', 'Google ' + gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
+    console.log("Searching");
+    var rest_request = helpers.createIdRequest("get", ApiConstants.SEARCH);
     rest_request.onreadystatechange = function() {
-      if (rest_request.readyState == 4) {
-        console.log('Search Success');
-        // TODO PROCESS REQUEST
-      }
+        console.log("Search_Success");
     }
     var request_json = {
       query: this.state.query_value,
     }
-    rest_request.send(JSON.stringify(request_json))
+    rest_request.send(JSON.stringify(request_json));
   }
 });
 
